@@ -1,0 +1,9 @@
+{
+  "name": "WebPersonalBackend",
+  "version": "0.0.1",
+  "description": "Backend de la Web Personal",
+  "main": "index.js",
+  "repository": "https://github.com/pprofpc/web-personal-server.git",
+  "author": "Pablo CANEPA <pprofpc@gmail.com>",
+  "license": "MIT"
+}
