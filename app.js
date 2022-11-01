@@ -11,6 +11,9 @@ const userRoutes = require('./routers/user');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Configure static folder
+app.use(express.static("uploads"));
+
 // Configure Header HTTP
 // ....
 
