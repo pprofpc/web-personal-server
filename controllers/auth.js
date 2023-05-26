@@ -80,8 +80,24 @@ function login(req, res) {
     });
   }
   
+function refreshAccessToken(req, res) {
+    const { token } = req.body;
+
+    const{ user_id } = jwt.decodedToken(token);
+
+    User.findOne({_id: user_id}, (err, userStored) => {
+        if(err) {
+            res.status(500).send({message: "Error del servidor: ",err});
+        } else {
+            res.status(200).send({
+                accessToken: jwt.createAccessToken(userStored),
+            });
+        }
+    });
+}
 
 module.exports = {
     register,
-    login
+    login,
+    refreshAccessToken
 };
