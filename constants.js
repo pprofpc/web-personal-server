@@ -2,7 +2,7 @@ const DB_USER = "admin";
 const DB_PASSWORD = "admin123456";
 const DB_HOST = "web-personal.duntxzd.mongodb.net";
 
-const API_VERSION = "V1";
+const API_VERSION = "v1";
 const IP_SERVER = "localhost";
 
 module.exports = {

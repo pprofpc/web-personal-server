@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt-nodejs");
+const bcryptjs = require("bcryptjs");
 const User = require("../models/user");
 
 function signUp(req, res) {
