@@ -49,30 +49,33 @@ function login(req, res) {
       return;
     }
   
-    User.findOne({ email: email.toLowerCase() }, (err, user) => {
+    User.findOne({ email: email.toLowerCase() }, (err, userStored) => {
       if (err) {
         res.status(500).send({ message: "Internal server error." });
         return;
       }
   
-      if (!user) {
+      if (!userStored) {
         res.status(404).send({ message: "User not found." });
         return;
       }
   
-      bcrypt.compare(password, user.password, (bcryptErr, matched) => {
+      bcrypt.compare(password, userStored.password, (bcryptErr, matched) => {
         if (bcryptErr || !matched) {
           res.status(401).send({ message: "Invalid email or password." });
           return;
         }
   
-        if (!user.active) {
+        if (!userStored.active) {
           res.status(403).send({ message: "User is not active." });
           return;
         }
   
         // const token = jwt.createAccessToken(user);
-        res.status(200).send({ message: "Authentication successful." });
+        res.status(200).send({ 
+            access: jwt.createAccessToken(userStored),
+            refresh: jwt.createRefreshToken(userStored),
+            message: "Authentication successful." });
       });
     });
   }
